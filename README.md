@@ -16,7 +16,7 @@ These can either be pre-trained and plugged into our implementation of IDEC or o
 
 ## Quick Benchmark
 
-As a quick benachmark we compared the performcance of IDEC on three differente types of data (using the approapriated type of autoencoder) against an alternative method (Mini-Batch KMeans or DTW-based KMeans). The relsults of the clustering analsysi are reported (along with the ground truth) on a 2D reduction of the original dataset as produced by the UMAP algorithm. Given that we had access to the ground truth, we assessed the performance of each clustering algorithm through the (Rand index adjusted for chance)[https://scikit-learn.org/stable/modules/generated/sklearn.metrics.adjusted_rand_score.html] (ARScore).
+As a quick benachmark we compared the performcance of IDEC on three differente types of data (using the approapriated type of autoencoder) against an alternative method (Mini-Batch KMeans or DTW-based KMeans). The relsults of the clustering analsysi are reported (along with the ground truth) on a 2D reduction of the original dataset as produced by the UMAP algorithm. Given that we had access to the ground truth, we assessed the performance of each clustering algorithm through the [Rand index adjusted for chance](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.adjusted_rand_score.html) (ARScore).
 
 ### Tabular Data - RNA-Seq Dataset
 [This collection of data](https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq) is part of the RNA-Seq (HiSeq) PANCAN data set, it is a random extraction of gene expressions of patients having different types of tumor.
