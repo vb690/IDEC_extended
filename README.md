@@ -45,7 +45,7 @@ As a quick benachmark we compared the performcance of IDEC on three differente t
 ### DEC Implementations
 * https://github.com/XifengGuo/DEC-keras
 * https://github.com/vlukiyanov/pt-dec
-* 
+
 ### IDEC Implementations 
 * https://github.com/XifengGuo/IDEC
 * https://github.com/dawnranger/IDEC-pytorch
