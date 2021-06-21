@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vb690/IDEC_extended/HEAD)
 # Extended Improved Deep Embedding Clustering
 Extensiond of Improved Deep Embedding Clustering to support recurrent and convolutional autoencoders.
 
