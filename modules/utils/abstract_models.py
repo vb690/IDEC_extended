@@ -2,7 +2,7 @@ import numpy as np
 
 
 class _AbstractAutoencoder:
-    """Private class storing utility methods inherited by Autoencoders
+    """Protected class storing utility methods inherited by Autoencoders
     """
     def fit(self, X_train, epochs, batch_size, noise=None, **kwargs):
         """Method for fitting the encoder_decoder model and saving the entire
@@ -10,7 +10,7 @@ class _AbstractAutoencoder:
 
         Args:
             - X_train:      is a numpy array storing the values passed to the
-                            encoder_decoder
+                            autoencoder.
             - epochs:       is an integer specifyinng for how many number of
                             epochs the model will be trained
             - batch_size:   is a float and specifying the ratio of X_train
@@ -60,23 +60,26 @@ class _AbstractAutoencoder:
         return self._encoder.predict(X_test)
 
     def get_model(self):
-        """
+        """Method for getting the stored autoencoder model.
+
+        Returns:
+            - model: a keras model, the stored autoencoder model.
         """
         model = self._encoder_decoder
         return model
 
     def get_model_tag(self):
-        """Method for getting the model tag (identifier)
+        """Method for getting the model tag (identifier).
 
         Returns:
-            -model_tag: a string specifying the model tag
+            -model_tag: a string specifying the model tag.
         """
         model_tag = self.model_tag
         return model_tag
 
 
 class _AbstractDEC:
-    """Private class implementing methods inherited by the actual DEC models
+    """Protected class implementing methods inherited by the actual DEC models
     """
     def _print_status(self, status):
         """Protected method for printing the status of the training process
@@ -91,6 +94,8 @@ class _AbstractDEC:
         for key, value in status.items():
 
             print('{}: {}'.format(key, value))
+
+        return None
 
     def _generate_target_distribution(self, q):
         """Protected method for generating the target distribution of cluster
@@ -112,13 +117,24 @@ class _AbstractDEC:
         return p
 
     def get_model(self):
+        """Method for getting the stored IDEC model.
+
+        Returns:
+            - model: a keras model, the stored IDEC model.
+        """
         model = self._model
         return model
 
     def set_model(self, model):
         setattr(self, '_model', model)
         setattr(self, 'n_parameters', model.count_params())
+        return None
 
     def get_model_tag(self):
+        """Method for getting the model tag (identifier).
+
+        Returns:
+            -model_tag: a string specifying the model tag.
+        """
         model_tag = self.model_tag
         return model_tag

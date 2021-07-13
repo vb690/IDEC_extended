@@ -6,18 +6,19 @@ class ClusteringLayer(Layer):
     """Clustering layer converts input sample (feature) to soft label, i.e. a
     vector that represents the probability of the sample belonging to each
     cluster. The probability is calculated with student's t-distribution.
-
-    Args:
-        n_clusters: integer number of clusters.
-        weights:    numpy array with shape `(n_clusters, n_features)`.
-                    witch representing initial cluster centers.
-        alpha:      integer specifying  dof Student's t-distribution.
-
-    Returs
-        clusters:   2D tensor with shape: (n_samples, n_clusters), soft cluster
-                    assignment
     """
     def __init__(self, n_clusters, weights=None, alpha=1.0, **kwargs):
+        """Instatiate a clustering layer.
+        Args:
+            n_clusters: integer number of clusters.
+            weights:    numpy array with shape `(n_clusters, n_features)`.
+                        witch representing initial cluster centers.
+            alpha:      integer specifying  dof Student's t-distribution.
+
+        Returns:
+            clusters: 2D tensor with shape: (n_samples, n_clusters), soft.
+                cluster assignment
+        """
         if 'input_shape' not in kwargs and 'input_dim' in kwargs:
             kwargs['input_shape'] = (kwargs.pop('input_dim'),)
         super(ClusteringLayer, self).__init__(**kwargs)
@@ -42,6 +43,7 @@ class ClusteringLayer(Layer):
             self.set_weights(self.initial_weights)
             del self.initial_weights
         self.built = True
+        return None
 
     def call(self, inputs, **kwargs):
         """Compute student t-distribution, as same as used in t-SNE algorithm,

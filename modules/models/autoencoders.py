@@ -12,8 +12,7 @@ class VanillaAutoEncoder(_AbstractAutoencoder):
     """
     def __init__(self, X_shape, model_tag=None,
                  defined_architecture=None):
-        """
-        Initialize a VanillaAutoEncoder object, if a pre trained model is not
+        """Initialize a VanillaAutoEncoder object, if a pre trained model is not
         loaded an architecture schema has to be passed. In case a pre-trained
         model is loaded this will allow for a warm start.
 
@@ -21,8 +20,8 @@ class VanillaAutoEncoder(_AbstractAutoencoder):
         denoising autoencoder can be obtained.
 
         Args:
-            - X_shape: a tuple,
-            - model_tag: a string,
+            - X_shape: a tuple, specifying the shape of the input array.
+            - model_tag: a string, specifying an identifier for the model.
             - defined_architecture: is a dictionary defining the components of
                                     the model create_architecture
 
@@ -98,12 +97,10 @@ class VanillaAutoEncoder(_AbstractAutoencoder):
         return state
 
     def build(self, X_shape):
-        """
-        Method for creating the default architecture
+        """Method for creating the default architecture.
 
         Arguments:
-            - X_train: is a numpy array storing the values
-                       that the autoencoder will try to reconstruct
+            - X_shape: a tuple, specifying the shape of the input array.
 
         Returns:
             - None
@@ -155,6 +152,7 @@ class VanillaAutoEncoder(_AbstractAutoencoder):
         # and the encoder part of the autoencoder
         setattr(self, '_encoder_decoder', encoder_decoder)
         setattr(self, '_encoder', Model(input, latent_space))
+        return None
 
 
 class RecurrentAutoEncoder(_AbstractAutoencoder):
@@ -162,19 +160,16 @@ class RecurrentAutoEncoder(_AbstractAutoencoder):
     """
     def __init__(self, X_shape, model_tag=None,
                  defined_architecture=None):
-        """
-        Initialize a RecurrentAutoEncoder object, if a pre trained model is not
-        loaded an architecture schema has to be passed. In case a pre-trained
-        model is loaded this will allow for a warm start.
+        """Initialize a RecurrentAutoEncoder object, if a pre trained model
+        is not loaded an architecture schema has to be passed. In case a
+        pre-trained model is loaded this will allow for a warm start.
 
         Varying the parameter latent_space and corruption, an undercoplete or
         denoising autoencoder can be obtained.
 
         Args:
-            - save_path:    is a string defining the location where the model
-                            will be saved or from where it will be loaded
-            - id:           is  a string defining the name of the h5 file in
-                            whiche the saved model is stored
+            - X_shape: a tuple, specifying the shape of the input array.
+            - model_tag: a string, specifying an identifier for the model.
             - defined_architecture: is a dictionary defining the components of
                                     the model create_architecture
 
@@ -238,12 +233,10 @@ class RecurrentAutoEncoder(_AbstractAutoencoder):
         return state
 
     def __build(self, X_shape):
-        """
-        Method for creating the default architecture
+        """Method for creating the default architecture.
 
         Arguments:
-            - X_train: is a numpy array storing the values
-                       that the autoencoder will try to reconstruct
+            - X_shape: a tuple, specifying the shape of the input array.
 
         Returns:
             - None
@@ -277,6 +270,7 @@ class RecurrentAutoEncoder(_AbstractAutoencoder):
         # and the encoder part of the autoencoder
         setattr(self, '_encoder_decoder', encoder_decoder)
         setattr(self, '_encoder', Model(input, encoder))
+        return None
 
 
 class ConvAutoEncoder(_AbstractAutoencoder):
@@ -284,8 +278,7 @@ class ConvAutoEncoder(_AbstractAutoencoder):
     """
     def __init__(self, X_shape, model_tag=None,
                  defined_architecture=None):
-        """
-        Initialize a ConvAutoEncoder object, if a pre trained model is not
+        """Initialize a ConvAutoEncoder object, if a pre trained model is not
         loaded an architecture schema has to be passed. In case a pre-trained
         model is loaded this will allow for a warm start.
 
@@ -293,8 +286,8 @@ class ConvAutoEncoder(_AbstractAutoencoder):
         denoising autoencoder can be obtained.
 
         Args:
-            - model_tag:    is  a string defining the name of the h5 file in
-                            whiche the saved model is stored
+            - X_shape: a tuple, specifying the shape of the input array.
+            - model_tag: a string, specifying an identifier for the model.
             - defined_architecture: is a dictionary defining the components of
                                     the model create_architecture
 
@@ -360,12 +353,10 @@ class ConvAutoEncoder(_AbstractAutoencoder):
         return state
 
     def __build(self, X_shape):
-        """
-        Method for creating the default architecture
+        """Method for creating the default architecture.
 
         Arguments:
-            - X_train: is a numpy array storing the values
-                       that the autoencoder will try to reconstruct
+            - X_shape: a tuple, specifying the shape of the input array.
 
         Returns:
             - None
@@ -447,3 +438,4 @@ class ConvAutoEncoder(_AbstractAutoencoder):
         # and the encoder part of the autoencoder
         setattr(self, '_encoder_decoder', encoder_decoder)
         setattr(self, '_encoder', Model(input, latent_space))
+        return None

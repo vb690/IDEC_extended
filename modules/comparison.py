@@ -6,7 +6,21 @@ import matplotlib.pyplot as plt
 
 def compare_clusterers(clusterer_1, clusterer_2, ground_truth, reduction,
                        figsize=(15, 5), **kwargs):
-    """
+    """Utility function for comparing two clustering approaches on a problem
+    for which we have a ground truth.
+
+        Args:
+            - clusterer_1: a dictionary where key is the name of the clustering
+                method and value are the predicted labels.
+            - clusterer_2: a dictionary where key is the name of the clustering
+                method and value are the predicted labels.
+            - ground_truth: a numpy array, the ground truth labels.
+            - reduction: a numpy array, a matrix holding the low dimensional
+                projection of the original input data.
+            - figsize: a tuple, specifying the size of the figure
+            - **kwargs: keyword arguments passed to plt.scatter.
+        Returns:
+            - None
     """
     fig, axs = plt.subplots(1, 3, figsize=figsize)
     score_1 = adjusted_rand_score(

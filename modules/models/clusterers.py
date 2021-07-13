@@ -24,8 +24,7 @@ class IDEC(_AbstractDEC):
     """
     def __init__(self, X, autoencoder, n_clusters, gamma=0.1, model_tag=None,
                  initial_centroids=None, labels=None, optimizer=Adam()):
-        """
-        Method called when instatiating the VanillaDEC class
+        """Instatiate an IDEC.
 
         Args:
             - X:            a numpy array, input features that will be
@@ -65,6 +64,8 @@ class IDEC(_AbstractDEC):
         )
 
     def __getstate__(self):
+        """Deleting stored model.
+        """
         state = dict(self.__dict__)
         del state['_model']
         return state
@@ -118,6 +119,7 @@ class IDEC(_AbstractDEC):
                 [clusterer.cluster_centers_]
             )
         setattr(self, '_model', model)
+        return None
 
     def fit(self, X, epochs, btch_size, update_interval=140, verbose=True,
             tol=1e-3):
@@ -213,8 +215,26 @@ class IDEC(_AbstractDEC):
                 )
                 status['loss'] = loss
                 btch_index += 1
+        return None
 
     def predict(self, X, **kwargs):
+        """Method for predicting the soft cluster assignment given an input
+        X.
+
+        Args:
+            - X: a numpy array, input matrix that needs to be clustered.
+            - **kwargs: keyword arguments passed to the predict method of
+                a keras model.
+
+        Return:
+            - soft_labels: a numpy array of shape N x k where N is the number
+                of samples and k the number of clusters. Since this is soft
+                clustering each k has an associated probability.
+
+                Example given 3 expected clusters:
+
+                [0.5, 0.25, 0.25]
+        """
         predictions = self._model.predict(X, **kwargs)
         soft_labels = predictions[0]
         return soft_labels
