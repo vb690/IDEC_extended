@@ -46,8 +46,8 @@ class ClusteringLayer(Layer):
         return None
 
     def call(self, inputs, **kwargs):
-        """Compute student t-distribution, as same as used in t-SNE algorithm,
-        which is given by
+        """Method for computing student t-distribution, as same as
+        used in t-SNE algorithm, which is given by
 
         q_ij = 1/(1+dist(x_i, u_j)^2)
 
@@ -61,11 +61,15 @@ class ClusteringLayer(Layer):
                 sample, shape=(n_samples, n_clusters).
         """
         # we compute the distance between the centroids and each point
-        euclidian_distance = K.sum(
-            K.square(K.expand_dims(inputs, axis=1) - self.clusters),
-            axis=2
+        euclidian_distance = K.sqrt(
+                K.sum(
+                    K.square(
+                        K.expand_dims(inputs, axis=1) - self.clusters
+                    ),
+                    axis=2
+                )
         )
-        q = 1.0 / (1.0 + euclidian_distance / self.alpha)
+        q = 1.0 / (1.0 + (euclidian_distance ** 2.0) / self.alpha)
         q **= (self.alpha + 1.0) / 2.0
         q = K.transpose(K.transpose(q) / K.sum(q, axis=1))
         return q
