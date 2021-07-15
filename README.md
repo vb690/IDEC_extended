@@ -14,7 +14,7 @@ A series of different autoencoders implementations are available
 * Recurrent Autoencoder
 * Convolutional Autoencoder
 
-These can either be pre-trained and plugged into our implementation of IDEC or optimized during the IDEC training stage. Running IDEC with a γ=0 and a pretrained autoencoder will be equivalent to run DEC.
+These can either be pre-trained and plugged into our implementation of IDEC or optimized during the IDEC training stage. Running IDEC with a 𝛿=0 and a pretrained autoencoder will be equivalent to run DEC.
 
 ## Quick Benchmark
 
